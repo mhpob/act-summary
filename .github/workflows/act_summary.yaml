@@ -45,8 +45,14 @@ jobs:
       
       - name: Read config.yaml
         run: |
-          Rscript -e "config <- yaml::read_yaml('config.yaml');
-            Sys.setenv(project = config$project, data_type = config$data_type)"
+          echo $(Rscript -e "{
+            config <- yaml::read_yaml('config.yaml') |> 
+              unlist()
+            cat(
+              'project=', config['project'], '\n',
+              'data_type=', config['data_type'], sep = ''
+            )
+          }") >> $GITHUB_ENV
           
       - name: Create data push summary
         run: |
