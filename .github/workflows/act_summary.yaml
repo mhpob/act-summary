@@ -22,7 +22,6 @@ jobs:
   buildAndDeploy:
   
     env:
-      url: ${{ steps.deployment.outputs.page_url }}
       MATOS_USER: ${{ secrets.MATOS_USERNAME }}
       MATOS_PASS: ${{ secrets.MATOS_PASSWORD }}
       
@@ -64,4 +63,4 @@ jobs:
         uses: actions/deploy-pages@v4
       
       - name: Print URL
-        run: echo "Deployed at $url"
+        run: echo "Deployed at ${{ steps.deployment.outputs.page_url }}"
