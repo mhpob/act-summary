@@ -87,6 +87,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
       
-    - uses: geekyeggo/delete-artifact@v5
-      with:
-        name: summary
+      - name: Delete artifact
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: summary
