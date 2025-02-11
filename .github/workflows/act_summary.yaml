@@ -32,6 +32,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        
       - name: Set up R
         uses: eddelbuettel/github-actions/r2u-setup@master
 
