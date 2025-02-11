@@ -42,7 +42,7 @@ jobs:
       - name: Create data push summary
         run: |
           Rscript -e "matos::matos_${{ env.data_type }}_summary(
-            ${{ env.project }}
+            '${{ env.project }}'
           )"
       
       - name:
