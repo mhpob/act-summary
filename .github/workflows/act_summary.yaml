@@ -1,0 +1,67 @@
+env:
+  project: "MDBSB"
+  data_type: "tag"
+
+name: Build github pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+  
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+  
+jobs:
+  buildAndDeploy:
+  
+    env:
+      url: ${{ steps.deployment.outputs.page_url }}
+      MATOS_USER: ${{ secrets.MATOS_USERNAME }}
+      MATOS_PASS: ${{ secrets.MATOS_PASSWORD }}
+      
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Set up R
+        uses: eddelbuettel/github-actions/r2u-setup@master
+
+      - name: Install {remotes} and {matos}
+        run: |
+          Rscript -e "install.packages('remotes');
+            remotes::install_gitub('mhpob/matos')"
+      
+      - name: Create data push summary
+        run: |
+          Rscript -e "matos::matos_${{ env.data_type }}_summary(
+            ${{ env.project }}
+          )"
+      
+      - name:
+        run: |
+          mkdir summary
+          cp *${{ env.data_type }}_push_summary* summary
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "summary"
+        
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      
+      - name: Print URL
+        run: echo "Deployed at $url"
