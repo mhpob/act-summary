@@ -34,10 +34,11 @@ jobs:
       - name: Set up R
         uses: eddelbuettel/github-actions/r2u-setup@master
 
-      - name: Install {remotes} and {matos}
-        run: |
-          Rscript -e "install.packages('remotes');
-            remotes::install_github('mhpob/matos')"
+      - name: Install {remotes}
+        run: Rscript -e "install.packages('remotes')"
+        
+      - name: Install {matos}
+        run: Rscript -e "remotes::install_github('mhpob/matos')"
       
       - name: Create data push summary
         run: |
