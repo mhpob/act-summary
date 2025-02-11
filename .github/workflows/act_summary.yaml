@@ -38,7 +38,7 @@ jobs:
         run: Rscript -e "install.packages('remotes')"
         
       - name: Install {matos}
-        run: Rscript -e "remotes::install_github('mhpob/matos')"
+        run: Rscript -e "Sys.unsetenv('GITHUB_PAT'); remotes::install_github('mhpob/matos')"
       
       - name: Create data push summary
         run: |
