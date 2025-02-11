@@ -40,8 +40,10 @@ jobs:
 
       - name: Install {remotes}, {yaml}, and {matos} packages
         run: |
-          Rscript -e "install.packages(c('remotes', 'yaml'));
-            remotes::install_github('mhpob/matos')"
+          Rscript -e "{
+            install.packages(c('remotes', 'yaml', 'codetools'))
+            remotes::install_github('mhpob/matos')
+          }"
       
       - name: Read config.yaml
         run: |
@@ -85,12 +87,12 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
       
-      - name: Delete Artifact
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.actions.deleteArtifact({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              artifact_id: ${{ steps.summary.outputs.artifact-id }}
-            });
+      # - name: Delete Artifact
+      #   uses: actions/github-script@v7
+      #   with:
+      #     script: |
+      #       github.rest.actions.deleteArtifact({
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         artifact_id: ${{ steps.summary.outputs.artifact-id }}
+      #       });
