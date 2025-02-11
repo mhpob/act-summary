@@ -22,8 +22,8 @@ jobs:
   buildAndDeploy:
   
     env:
-      MATOS_USER: ${{ secrets.MATOS_USERNAME }}
-      MATOS_PASS: ${{ secrets.MATOS_PASSWORD }}
+      MATOS_USER: ${{ secrets.MATOS_USER }}
+      MATOS_PASS: ${{ secrets.MATOS_PASS }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       
     runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
             '${{ env.project }}'
           )"
       
-      - name:
+      - name: Copy files to GH Pages directory
         run: |
           mkdir summary
           cp *${{ env.data_type }}_push_summary* summary
