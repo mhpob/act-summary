@@ -4,7 +4,7 @@ This repository automatically summarizes a given project and data type and posts
 it on a GitHub page for easy access and sharing. You can find the page created 
 by this repository here: <https://mhpob.github.io/act-summary/>.
 
-It utilizes the (matos)[https://matos.obrien.page] and (otndo)[https://otndo.obrien.page] 
+It utilizes the [matos](https://matos.obrien.page) and [otndo](https://otndo.obrien.page) 
 R packages within a GitHub Action to post the summary directly to your given page.
 
 ## Initial setup:
