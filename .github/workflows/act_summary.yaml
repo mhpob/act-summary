@@ -77,6 +77,7 @@ jobs:
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        id: summary
         with:
           path: "summary"
         
@@ -91,5 +92,5 @@ jobs:
             github.rest.actions.deleteArtifact({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              artifact_id: ${{ steps.artifact-upload.outputs.artifact-id }}
+              artifact_id: ${{ steps.summary.outputs.artifact-id }}
             });
