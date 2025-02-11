@@ -79,20 +79,14 @@ jobs:
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        id: summary
         with:
           path: "summary"
+          name: summary
         
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
       
-      # - name: Delete Artifact
-      #   uses: actions/github-script@v7
-      #   with:
-      #     script: |
-      #       github.rest.actions.deleteArtifact({
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #         artifact_id: ${{ steps.summary.outputs.artifact-id }}
-      #       });
+    - uses: geekyeggo/delete-artifact@v5
+      with:
+        name: summary
