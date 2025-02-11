@@ -49,7 +49,14 @@ jobs:
             config <- yaml::read_yaml('config.yaml') |> 
               unlist()
             cat(
-              'project=', config['project'], '\n',
+              'project=', config['project'], sep = ''
+            )
+          }") >> $GITHUB_ENV
+          
+          echo $(Rscript -e "{
+            config <- yaml::read_yaml('config.yaml') |> 
+              unlist()
+            cat(
               'data_type=', config['data_type'], sep = ''
             )
           }") >> $GITHUB_ENV
