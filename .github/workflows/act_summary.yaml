@@ -24,6 +24,7 @@ jobs:
     env:
       MATOS_USER: ${{ secrets.MATOS_USERNAME }}
       MATOS_PASS: ${{ secrets.MATOS_PASSWORD }}
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       
     runs-on: ubuntu-latest
     
@@ -34,11 +35,9 @@ jobs:
       - name: Set up R
         uses: eddelbuettel/github-actions/r2u-setup@master
 
-      - name: Install {remotes}
-        run: Rscript -e "install.packages('remotes')"
-        
-      - name: Install {matos}
-        run: Rscript -e "Sys.unsetenv('GITHUB_PAT'); remotes::install_github('mhpob/matos')"
+      - name: Install {remotes} and {matos} packages
+        run: |
+          Rscript -e "install.packages('remotes'); remotes::install_github('mhpob/matos')"
       
       - name: Create data push summary
         run: |
