@@ -37,7 +37,7 @@ jobs:
       - name: Install {remotes} and {matos}
         run: |
           Rscript -e "install.packages('remotes');
-            remotes::install_gitub('mhpob/matos')"
+            remotes::install_github('mhpob/matos')"
       
       - name: Create data push summary
         run: |
