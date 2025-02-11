@@ -1,6 +1,6 @@
-env:
-  project: "MDBSB"
-  data_type: "tag"
+# env:
+#   project: "MDBSB"
+#   data_type: "tag"
 
 name: Build github pages
 
@@ -38,10 +38,16 @@ jobs:
       - name: Set up R
         uses: eddelbuettel/github-actions/r2u-setup@master
 
-      - name: Install {remotes} and {matos} packages
+      - name: Install {remotes}, {yaml}, and {matos} packages
         run: |
-          Rscript -e "install.packages('remotes'); remotes::install_github('mhpob/matos')"
+          Rscript -e "install.packages(c('remotes', 'yaml'));
+            remotes::install_github('mhpob/matos')"
       
+      - name: Read config.yaml
+        run: |
+          Rscript -e "config <- yaml::read_yaml('config.yaml');
+            Sys.setenv(project = config$project, data_type = config$data_type)"
+          
       - name: Create data push summary
         run: |
           Rscript -e "matos::matos_${{ env.data_type }}_summary(
