@@ -14,7 +14,7 @@ Don't worry, this only needs to be done once!
 1. If you don't have one already, create a GitHub account
 2. Fork this repository (button at the top right)
 3. Add your MATOS username and password to the repository's secrets
-  a. Click "Settings"
+  a.  Click "Settings"
   b. Click "Secrets and variables" under "Security"
   c. Click "Actions"
   d. In the "Secrets" tab, click "New repository secret"
