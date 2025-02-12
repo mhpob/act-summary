@@ -14,16 +14,16 @@ Don't worry, this only needs to be done once!
 1. If you don't have one already, create a GitHub account
 2. Fork this repository (button at the top right)
 3. Add your MATOS username and password to the repository's secrets
-  1. Click "Settings"
-  2. Click "Secrets and variables" under "Security"
-  3. Click "Actions"
-  4. In the "Secrets" tab, click "New repository secret"
-    1. Under "Name", write "MATOS_USER"
-    2. Write your username under "Secret" and click "Add secret" to save
-    3. Repeat, with "MATOS_PASS" under "Name" and your password under "Secret"
+    1. Click "Settings"
+    2. Click "Secrets and variables" under "Security"
+    3. Click "Actions"
+    4. In the "Secrets" tab, click "New repository secret"
+        1. Under "Name", write "MATOS_USER"
+        2. Write your username under "Secret" and click "Add secret" to save
+        3. Repeat, with "MATOS_PASS" under "Name" and your password under "Secret"
 4. Activate GitHub Pages for this repository
-  1. "Settings" -> "Code and automation" -> "Pages"
-  2. "Build and Deployment" -> "Source" -> "GitHub Actions"
+    1. "Settings" -> "Code and automation" -> "Pages"
+    2. "Build and Deployment" -> "Source" -> "GitHub Actions"
 
 
 ## Project setup
